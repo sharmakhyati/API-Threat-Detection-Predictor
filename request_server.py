@@ -1,0 +1,156 @@
+import requests
+import json
+
+url = "http://localhost:8000/predict"
+
+# Properly formatted request data
+data = {
+  "features": [
+    {
+      "dur": 0.000011,
+      "proto": "udp",
+      "service": "-",
+      "state": "INT",
+      "spkts": 2,
+      "dpkts": 0,
+      "sbytes": 496,
+      "dbytes": 0,
+      "rate": 90909.0902,
+      "sttl": 254,
+      "dttl": 0,
+      "sload": 180363632.0,
+      "dload": 0.0,
+      "sloss": 0,
+      "dloss": 0,
+      "sinpkt": 0.011,
+      "dinpkt": 0.0,
+      "sjit": 0.0,
+      "djit": 0.0,
+      "swin": 0,
+      "stcpb": 0,
+      "dtcpb": 0,
+      "dwin": 0,
+      "tcprtt": 0.0,
+      "synack": 0.0,
+      "ackdat": 0.0,
+      "smean": 248,
+      "dmean": 0,
+      "trans_depth": 0,
+      "response_body_len": 0,
+      "ct_srv_src": 2,
+      "ct_state_ttl": 2,
+      "ct_dst_ltm": 1,
+      "ct_src_dport_ltm": 1,
+      "ct_dst_sport_ltm": 1,
+      "ct_dst_src_ltm": 2,
+      "is_ftp_login": 0,
+      "ct_ftp_cmd": 0,
+      "ct_flw_http_mthd": 0,
+      "ct_src_ltm": 1,
+      "ct_srv_dst": 2,
+      "is_sm_ips_ports": 0
+    },
+    {
+      "dur": 0.000008,
+      "proto": "udp",
+      "service": "-",
+      "state": "INT",
+      "spkts": 2,
+      "dpkts": 0,
+      "sbytes": 1762,
+      "dbytes": 0,
+      "rate": 125000.0003,
+      "sttl": 254,
+      "dttl": 0,
+      "sload": 881000000.0,
+      "dload": 0.0,
+      "sloss": 0,
+      "dloss": 0,
+      "sinpkt": 0.008,
+      "dinpkt": 0.0,
+      "sjit": 0.0,
+      "djit": 0.0,
+      "swin": 0,
+      "stcpb": 0,
+      "dtcpb": 0,
+      "dwin": 0,
+      "tcprtt": 0.0,
+      "synack": 0.0,
+      "ackdat": 0.0,
+      "smean": 881,
+      "dmean": 0,
+      "trans_depth": 0,
+      "response_body_len": 0,
+      "ct_srv_src": 2,
+      "ct_state_ttl": 2,
+      "ct_dst_ltm": 1,
+      "ct_src_dport_ltm": 1,
+      "ct_dst_sport_ltm": 1,
+      "ct_dst_src_ltm": 2,
+      "is_ftp_login": 0,
+      "ct_ftp_cmd": 0,
+      "ct_flw_http_mthd": 0,
+      "ct_src_ltm": 1,
+      "ct_srv_dst": 2,
+      "is_sm_ips_ports": 0
+    },
+    {
+      "dur": 0.000005,
+      "proto": "udp",
+      "service": "-",
+      "state": "INT",
+      "spkts": 2,
+      "dpkts": 0,
+      "sbytes": 1068,
+      "dbytes": 0,
+      "rate": 200000.0051,
+      "sttl": 254,
+      "dttl": 0,
+      "sload": 854400000.0,
+      "dload": 0.0,
+      "sloss": 0,
+      "dloss": 0,
+      "sinpkt": 0.005,
+      "dinpkt": 0.0,
+      "sjit": 0.0,
+      "djit": 0.0,
+      "swin": 0,
+      "stcpb": 0,
+      "dtcpb": 0,
+      "dwin": 0,
+      "tcprtt": 0.0,
+      "synack": 0.0,
+      "ackdat": 0.0,
+      "smean": 534,
+      "dmean": 0,
+      "trans_depth": 0,
+      "response_body_len": 0,
+      "ct_srv_src": 3,
+      "ct_state_ttl": 2,
+      "ct_dst_ltm": 1,
+      "ct_src_dport_ltm": 1,
+      "ct_dst_sport_ltm": 1,
+      "ct_dst_src_ltm": 3,
+      "is_ftp_login": 0,
+      "ct_ftp_cmd": 0,
+      "ct_flw_http_mthd": 0,
+      "ct_src_ltm": 1,
+      "ct_srv_dst": 3,
+      "is_sm_ips_ports": 0
+    }
+  ],
+  "ids": [1, 2, 3]
+}
+
+headers = {"Content-Type": "application/json"}
+
+try:
+    response = requests.post(url, json=data, headers=headers)
+    response.raise_for_status()
+    print("Success! Response:")
+    print(json.dumps(response.json(), indent=2))
+except requests.exceptions.HTTPError as err:
+    print(f"HTTP Error: {err}")
+    print(f"Response content: {err.response.text}")
+except Exception as e:
+    print(f"Other error: {e}")
