@@ -1,0 +1,7 @@
+torch 
+torchvision 
+torchaudio 
+torch-geometric 
+scikit-learn 
+pandas
+fastapi
