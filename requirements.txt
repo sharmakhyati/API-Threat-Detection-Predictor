@@ -5,3 +5,4 @@ torch-geometric
 scikit-learn 
 pandas
 fastapi
+uvicorn
